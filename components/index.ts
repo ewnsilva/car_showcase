@@ -1,4 +1,5 @@
 export { CarCard } from "./CarCard";
+export { CarDetails } from "./CarDetails";
 export { CostumFilter } from "./CostumFilter";
 export { CustomButton } from "./CustomButton";
 export { Footer } from "./Footer";
