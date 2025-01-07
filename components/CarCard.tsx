@@ -4,14 +4,14 @@ import Image from "next/image";
 
 import { CustomButton } from "./CustomButton";
 import { CarProps } from "../types";
-import { calculateCarRent } from "../utils";
+import { calculateCarRent, generateCarImageUrl } from "../utils";
 import { useState } from "react";
 import { CarDetails } from "./CarDetails";
 
 export const CarCard: React.FC<{ car: CarProps }> = ({ car }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { city_mpg, drive, make, model, mpg, transmission, year } = car;
+  const { city_mpg, drive, make, model, transmission, year } = car;
 
   const carRent = calculateCarRent(city_mpg, year);
 
@@ -31,7 +31,7 @@ export const CarCard: React.FC<{ car: CarProps }> = ({ car }) => {
 
       <div className="relative w-full h-40 my-3 object-contain">
         <Image
-          src="/hero.png"
+          src={generateCarImageUrl(car)}
           alt="car model"
           fill
           priority
