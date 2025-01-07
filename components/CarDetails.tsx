@@ -48,7 +48,7 @@ export const CarDetails: React.FC<CarDetailsProps> = ({
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <DialogPanel className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white text-left shadow-xsl transition-all flex flex-col gap-5">
+                <DialogPanel className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5">
                   <button
                     type="button"
                     onClick={closeModal}
@@ -101,6 +101,26 @@ export const CarDetails: React.FC<CarDetailsProps> = ({
                           className="object-contain"
                         />
                       </div>
+                    </div>
+                  </div>
+
+                  <div className="flex-1 flex flex-col gap2">
+                    <h2 className="font-semibold text-xl capitalize">
+                      {car.make} {car.model}
+                    </h2>
+
+                    <div className="mt-3 flw flex-wrap">
+                      {Object.entries(car).map(([key, value]) => (
+                        <div
+                          className="flex justify-between gap-5 w-full"
+                          key={key}
+                        >
+                          <h4 className="text-gray capitalize">
+                            {key.split("_").join(" ")}
+                          </h4>
+                          <p className="text-black font-semibold">{value}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </DialogPanel>
