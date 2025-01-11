@@ -1,14 +1,19 @@
-import { CarProps } from "../types";
+import { CarProps, FilterProps } from "../types";
 
-export async function fetchCars() {
+export async function fetchCars(filters: FilterProps) {
+  const { fuel, limit, manufacturer, model, year } = filters;
+
   const headers = {
     "X-RapidAPI-Key": `${process.env.XRapidAPIKey}`,
     "X-RapidAPI-Host": `${process.env.XRapidAPIHost}`,
   };
 
-  const response = await fetch(`${process.env.URL}/v1/cars?model=corolla`, {
-    headers: headers,
-  });
+  const response = await fetch(
+    `${process.env.URL}/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
+    {
+      headers: headers,
+    }
+  );
 
   const result = await response.json();
 
