@@ -1,10 +1,10 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import { Listbox, ListboxButton, Transition } from "@headlessui/react";
+import { Listbox, ListboxButton } from "@headlessui/react";
 import { CustomFilterProps, OptionProps } from "../types";
 import { updateSearchParams } from "../utils";
 
