@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { Listbox, ListboxButton, Transition } from "@headlessui/react";
-import { CustomFilterProps } from "../types";
+import { CustomFilterProps, OptionProps } from "../types";
 import { updateSearchParams } from "../utils";
 
 export const CostumFilter: React.FC<CustomFilterProps> = ({
@@ -13,7 +13,9 @@ export const CostumFilter: React.FC<CustomFilterProps> = ({
   options,
 }) => {
   const router = useRouter();
-  const [selected, setSelected] = useState(options[0]);
+  const [selected, setSelected] = useState<OptionProps | undefined>(
+    {} as OptionProps
+  );
 
   const handleUpdateParams = (e: { title: string; value: string }) => {
     const newPathName = updateSearchParams(title, e.value.toLowerCase());
@@ -32,7 +34,7 @@ export const CostumFilter: React.FC<CustomFilterProps> = ({
       >
         <div className="relative w-fit z-10">
           <ListboxButton className="custom-bilter__btn">
-            <span className="block truncate">{selected.title}</span>
+            <span className="block truncate">{selected?.title}</span>
             <Image
               src="/chevron-up-down.svg"
               width={20}
