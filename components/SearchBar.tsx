@@ -8,7 +8,7 @@ import Image from "next/image";
 import { SearchManufacturer } from "./SearchManufacturer";
 
 const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
-  <button type="button" className={`-ml-3 z-10 ${otherClasses}`}>
+  <button type="submit" className={`-ml-3 z-10 ${otherClasses}`}>
     <Image
       src="/magnifying-glass.svg"
       alt="magnifying glass"
@@ -21,14 +21,14 @@ const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
 
 export const SearchBar = () => {
   const router = useRouter();
-  const [manufacturer, setManufacturer] = useState("");
 
+  const [manufacturer, setManufacturer] = useState("");
   const [model, setModel] = useState("");
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (manufacturer === "" && model === "") {
+    if (manufacturer.trim() === "" && model.trim() === "") {
       return alert("Please fill in the search bar");
     }
 
@@ -79,11 +79,12 @@ export const SearchBar = () => {
           name="model"
           value={model}
           onChange={(e) => setModel(e.target.value)}
-          placeholder="Tiguan"
+          placeholder="Tiguan..."
           className="searchbar__input"
         ></input>
         <SearchButton otherClasses="sm:hidden" />
       </div>
+      <SearchButton otherClasses="max-sm:hidden" />
     </form>
   );
 };
