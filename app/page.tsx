@@ -1,57 +1,66 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
 import {
   Hero,
   SearchBar,
-  CostumFilter,
+  CustomFilter,
   CarCard,
   ShowMore,
 } from "../components";
 import { fetchCars } from "../utils";
+import { useEffect, useState } from "react";
 
-export default async function Home({ searchParams }) {
-  const allCars = await fetchCars({
-    manufacturer: searchParams.manufacturer || "",
-    year: searchParams.year || "2022",
-    fuel: searchParams.fuel || "",
-    limit: searchParams.limit || 10,
-    model: searchParams.model || "",
-  });
+export default function Home() {
+  const searchParams = useSearchParams();
+  const [cars, setCars] = useState([]);
 
-  const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
+  const manufacturer = searchParams.get("manufacturer") || "";
+  const year = Number(searchParams.get("year")) || 2022;
+  const fuel = searchParams.get("fuel") || "";
+  const limit = Number(searchParams.get("limit")) || 10;
+
+  useEffect(() => {
+    async function fetchData() {
+      const allCars = await fetchCars({ manufacturer, year, fuel, limit });
+      setCars(allCars);
+    }
+    fetchData();
+  }, [manufacturer, year, fuel, limit]);
+
+  const isDataEmpty = !Array.isArray(cars) || cars.length < 1 || !cars;
 
   return (
     <main className="overflow-hidden">
       <Hero />
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
-          <h1 className="text-4x1 font-extrabold">Car Catalogue</h1>
+          <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
           <p>Explore the cars you might like</p>
         </div>
 
         <div className="home__filters">
           <SearchBar />
-
           <div className="home__filter-container">
-            <CostumFilter title="fuel" />
-            <CostumFilter title="year" />
+            <CustomFilter title="fuel" />
+            <CustomFilter title="year" />
           </div>
         </div>
+
         {!isDataEmpty ? (
           <section>
             <div className="home__cars-wrapper">
-              {allCars?.map((car, index) => (
+              {cars?.map((car, index) => (
                 <CarCard car={car} key={index} />
               ))}
             </div>
 
-            <ShowMore
-              pageNumber={(searchParams.limit || 10) / 10}
-              isNext={(searchParams.limit || 10) > allCars.length}
-            />
+            <ShowMore pageNumber={limit / 10} isNext={limit > cars.length} />
           </section>
         ) : (
           <div className="home__error-container">
             <h2 className="text-black text-xl font-bold">Oops, no results</h2>
-            <p>{allCars?.message}</p>
+            <p>{cars?.message}</p>
           </div>
         )}
       </div>
