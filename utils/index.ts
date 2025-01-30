@@ -4,12 +4,12 @@ export async function fetchCars(filters: FilterProps) {
   const { fuel, limit, manufacturer, model, year } = filters;
 
   const headers = {
-    "X-RapidAPI-Key": `${process.env.XRapidAPIKey}`,
-    "X-RapidAPI-Host": `${process.env.XRapidAPIHost}`,
+    "X-RapidAPI-Key": `${process.env.NEXT_PUBLIC_XRapidAPIKey}` || "",
+    "X-RapidAPI-Host": `${process.env.NEXT_PUBLIC_XRapidAPIHost}`,
   };
 
   const response = await fetch(
-    `${process.env.URL}/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
+    `${process.env.NEXT_PUBLIC_URL}/v1/cars?make=${manufacturer}&year=${year}&model=${model}&fuel_type=${fuel}`,
     {
       headers: headers,
     }
