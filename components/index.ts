@@ -1,6 +1,6 @@
 export { CarCard } from "./CarCard";
 export { CarDetails } from "./CarDetails";
-export { CostumFilter } from "./CostumFilter";
+export { CustomFilter } from "./CustomFilter";
 export { CustomButton } from "./CustomButton";
 export { Footer } from "./Footer";
 export { Hero } from "./Hero";
