@@ -8,12 +8,13 @@ import {
   CarCard,
   ShowMore,
 } from "../components";
+import { fuels, yearsOfProduction } from "../constants";
 import { fetchCars } from "../utils";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const searchParams = useSearchParams();
-  const [cars, setCars] = useState([]);
+  const [cars, setCars] = useState<any>([]);
 
   const manufacturer = searchParams.get("manufacturer") || "";
   const year = Number(searchParams.get("year")) || 2022;
@@ -42,8 +43,8 @@ export default function Home() {
         <div className="home__filters">
           <SearchBar />
           <div className="home__filter-container">
-            <CustomFilter title="fuel" />
-            <CustomFilter title="year" />
+            <CustomFilter title="fuel" options={fuels} />
+            <CustomFilter title="year" options={yearsOfProduction} />
           </div>
         </div>
 
