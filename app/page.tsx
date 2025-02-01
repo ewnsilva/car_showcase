@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+
 import {
   Hero,
   SearchBar,
@@ -9,12 +11,12 @@ import {
   ShowMore,
 } from "../components";
 import { fuels, yearsOfProduction } from "../constants";
+import { CarProps } from "../types";
 import { fetchCars } from "../utils";
-import { useEffect, useState } from "react";
 
 export default function Home() {
   const searchParams = useSearchParams();
-  const [cars, setCars] = useState<any>([]);
+  const [cars, setCars] = useState<CarProps[]>([]);
 
   const manufacturer = searchParams.get("manufacturer") || "";
   const year = Number(searchParams.get("year")) || 2022;
@@ -61,7 +63,6 @@ export default function Home() {
         ) : (
           <div className="home__error-container">
             <h2 className="text-black text-xl font-bold">Oops, no results</h2>
-            <p>{cars?.message}</p>
           </div>
         )}
       </div>
