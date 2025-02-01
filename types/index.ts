@@ -16,11 +16,11 @@ export interface CarProps {
 }
 
 export interface FilterProps {
-  manufacturer?: string;
-  year?: number;
-  model?: string;
-  limit?: number;
   fuel?: string;
+  limit?: number;
+  manufacturer?: string;
+  model?: string;
+  year?: number;
 }
 
 export interface HomeProps {
@@ -28,23 +28,23 @@ export interface HomeProps {
 }
 
 export interface CarCardProps {
-  model: string;
+  city_mpg: number;
+  drive: string;
   make: string;
+  model: string;
   mpg: number;
   transmission: string;
   year: number;
-  drive: string;
-  city_mpg: number;
 }
 
 export interface CustomButtonProps {
-  isDisabled?: boolean;
   btnType?: "button" | "submit";
   containerStyles?: string;
+  handleClick?: MouseEventHandler<HTMLButtonElement>;
+  isDisabled?: boolean;
+  rightIcon?: string;
   textStyles?: string;
   title: string;
-  rightIcon?: string;
-  handleClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export interface OptionProps {
@@ -53,13 +53,13 @@ export interface OptionProps {
 }
 
 export interface CustomFilterProps {
-  title: string;
   options: OptionProps[];
+  title: string;
 }
 
 export interface ShowMoreProps {
-  pageNumber: number;
   isNext: boolean;
+  pageNumber: number;
 }
 
 export interface SearchManuFacturerProps {
