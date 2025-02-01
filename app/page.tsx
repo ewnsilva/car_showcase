@@ -18,18 +18,25 @@ export default function Home() {
   const searchParams = useSearchParams();
   const [cars, setCars] = useState<CarProps[]>([]);
 
-  const manufacturer = searchParams.get("manufacturer") || "";
-  const year = Number(searchParams.get("year")) || 2022;
   const fuel = searchParams.get("fuel") || "";
   const limit = Number(searchParams.get("limit")) || 10;
+  const manufacturer = searchParams.get("manufacturer") || "";
+  const model = searchParams.get("model") || "";
+  const year = Number(searchParams.get("year")) || 2024;
 
   useEffect(() => {
     async function fetchData() {
-      const allCars = await fetchCars({ manufacturer, year, fuel, limit });
+      const allCars = await fetchCars({
+        manufacturer,
+        year,
+        fuel,
+        limit,
+        model,
+      });
       setCars(allCars);
     }
     fetchData();
-  }, [manufacturer, year, fuel, limit]);
+  }, [manufacturer, year, fuel, limit, model]);
 
   const isDataEmpty = !Array.isArray(cars) || cars.length < 1 || !cars;
 
