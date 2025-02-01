@@ -9,7 +9,7 @@ export async function fetchCars(filters: FilterProps) {
   };
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_URL}/v1/cars?make=${manufacturer}&year=${year}&model=${model}&fuel_type=${fuel}`,
+    `${process.env.NEXT_PUBLIC_URL_CARS}/v1/cars?make=${manufacturer}&year=${year}&model=${model}&fuel_type=${fuel}`,
     {
       headers: headers,
     }
@@ -50,14 +50,14 @@ export const deleteSearchParams = (type: string) => {
 };
 
 export const generateCarImageUrl = (car: CarProps, angle?: string) => {
-  const url = new URL("https://cdn.imagin.studio/getImage");
+  const url = new URL(`${process.env.NEXT_PUBLIC_URL_IMAGES}`);
 
   const { make, year, model } = car;
 
-  url.searchParams.append("costumer", "hrjavascript-mastery");
+  url.searchParams.append("costumer", `${process.env.NEXT_PUBLIC_IMAGES_KEY}`);
   url.searchParams.append("make", make);
   url.searchParams.append("modelFamily", model.split(" ")[0]);
-  url.searchParams.append("zoomType", "fuulscreen");
+  url.searchParams.append("zoomType", "fullscreen");
   url.searchParams.append("modelYear", `${year}`);
   url.searchParams.append("angle", `${angle}`);
 
