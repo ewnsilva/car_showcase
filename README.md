@@ -20,6 +20,7 @@ This is a Next.js-based website that showcases a variety of cars with detailed i
       <li><a href='#informations'>:star: Additional Informations:</a></li>
     </ul>
 </div>
+<br />
 <h2 name='technologies'>:computer: Technologies Used</h2>
 <div align='justify'>
 
@@ -65,19 +66,21 @@ This is a Next.js-based website that showcases a variety of cars with detailed i
    <li>npm</li>
 </ul>
 </div>
-<br />
-<h3>Prerequisites:</h3>
+<h3>Installation Steps:</h3>
 <div align='justify'>
 <ol>
    <li>Clone the repository:
       <pre><code>git clone https://github.com/adrianhajdin/project_next13_car_showcase.git
 cd project_next13_car_showcase</code></pre>
    </li>
+   <li>Access the project:
+      <pre><code>cd project_next13_car_showcase</code></pre>
+   </li>
    <li>Install dependencies:
       <pre><code>npm install</code></pre>
    </li>
       <li>Set up environment variables:<br>
-Create a <code>.env-cmdrc</code> file in the project root and add the following properties:
+Create a <code>.env-cmdrc</code> file in the project root, add the following properties and replace the placeholders with your actual API keys:
         <pre><code>{
   "development": {
     "NEXT_PUBLIC_URL_CARS": "https://cars-by-api-ninjas.p.rapidapi.com",
@@ -95,7 +98,6 @@ Create a <code>.env-cmdrc</code> file in the project root and add the following 
   }
 }</code>
 </pre>
-Replace the placeholders with your actual API keys.
    </li>
    <li>Start the development server:
       <pre><code>npm run dev</code></pre>
@@ -114,7 +116,7 @@ Access [http://localhost:3000](http://localhost:3000) in your browser to view th
 <p align='justify'>
 Enjoy building and exploring the Car Showcase Website! 🚀
 </p>
-<h3>Reference:</h3>
+<h3>References:</h3>
 <ul>
    <li><a href="https://api-ninjas.com/api/cars">API for search cars</a></li>
    <li><a href="https://www.imaginstudio.com/pt">API for car's images</a></li>
